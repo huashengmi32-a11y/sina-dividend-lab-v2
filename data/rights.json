@@ -1,0 +1,50 @@
+[
+  {
+    "stock_code": "000858",
+    "stock_name": "五粮液",
+    "record_id": "000858-R2001-01-19#1",
+    "announce_date": "2001-01-19",
+    "rights_per10": 2.0,
+    "rights_price": 25.0,
+    "base_share_capital": 480000000.0,
+    "ex_rights_date": "2001-02-19",
+    "record_date": "2001-02-16",
+    "payment_start": "2001-02-20 00:00:00",
+    "payment_end": "2001-03-05",
+    "listing_date": "2001-03-23",
+    "raised_funds": null,
+    "source_url": "http://vip.stock.finance.sina.com.cn/corp/view/vISSUE_ShareBonusDetail.php?stockid=000858&type=2&end_date=2001-01-19"
+  },
+  {
+    "stock_code": "600036",
+    "stock_name": "招商银行",
+    "record_id": "600036-R2013-08-23#1",
+    "announce_date": "2013-08-23",
+    "rights_per10": 1.74,
+    "rights_price": 9.29,
+    "base_share_capital": 17666100000.0,
+    "ex_rights_date": "2013-09-05",
+    "record_date": "2013-08-27",
+    "payment_start": "2013-08-28 00:00:00",
+    "payment_end": "2013-09-03",
+    "listing_date": "2013-09-11",
+    "raised_funds": null,
+    "source_url": "http://vip.stock.finance.sina.com.cn/corp/view/vISSUE_ShareBonusDetail.php?stockid=600036&type=2&end_date=2013-08-23"
+  },
+  {
+    "stock_code": "600036",
+    "stock_name": "招商银行",
+    "record_id": "600036-R2010-03-02#1",
+    "announce_date": "2010-03-02",
+    "rights_per10": 1.3,
+    "rights_price": 8.85,
+    "base_share_capital": 15658900000.0,
+    "ex_rights_date": "2010-03-15",
+    "record_date": "2010-03-04",
+    "payment_start": "2010-03-05 00:00:00",
+    "payment_end": "2010-03-11",
+    "listing_date": "2010-03-19",
+    "raised_funds": null,
+    "source_url": "http://vip.stock.finance.sina.com.cn/corp/view/vISSUE_ShareBonusDetail.php?stockid=600036&type=2&end_date=2010-03-02"
+  }
+]
