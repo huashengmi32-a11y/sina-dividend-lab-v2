@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 抓取缓存：可由 scripts/fetch_sina.py 重新生成
+data/raw/
+
+# Node 与 Playwright 产物（报告本体入库，失败追踪等大文件不入库）
+node_modules/
+tests/report/data/
+tests/report/trace/
+tests/report/*.zip
+tests/last-run.log
+test-results/
+.playwright/
+
+# 编辑器与系统文件
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
