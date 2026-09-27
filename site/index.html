@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>新浪财经历史分红数据获取与预处理 · 数据管线演示</title>
+  <meta name="description" content="抓取新浪财经个股分红送转与分红明细数据，清洗为结构化数据集，并展示处理流程、结果、数据质量报告与端到端测试。">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#334155">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23334155'/%3E%3Cpath d='M9 21V13M14 21V10M19 21V15M24 21V12' stroke='%23059669' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/fonts.css">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#overview">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"></ellipse>
+            <path d="M4.5 5.5v6c0 1.6 3.4 2.8 7.5 2.8s7.5-1.2 7.5-2.8v-6"></path>
+            <path d="M4.5 11.5v6c0 1.6 3.4 2.8 7.5 2.8s7.5-1.2 7.5-2.8v-6"></path>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong>新浪财经历史分红数据实验室</strong>
+          <small>第三章作业 · 数据获取与预处理</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="页面章节">
+        <a href="#overview">概览</a>
+        <a href="#process">过程</a>
+        <a href="#source">来源</a>
+        <a href="#dataset">数据</a>
+        <a href="#quality">质量</a>
+        <a href="#charts">图表</a>
+        <a href="#dictionary">字段</a>
+        <a href="#tests">测试</a>
+        <a href="#reproduce">复现</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============================ 概览 ============================ -->
+    <section id="overview" class="band hero">
+      <div class="container">
+        <p class="eyebrow">课程作业 · 基于 Codex 的数据管线实战</p>
+        <h1>从新浪财经网页到可分析数据集</h1>
+        <p class="lead">
+          以个股「分红送转」列表页与「分红明细」页为数据源，完整走一遍
+          「需求确认 → 原始抓取 → 解析清洗 → 质量校验 → 可视化测试」的流程，
+          并把每一步的产物、证据与结论都留在这一个页面里。
+        </p>
+        <p class="meta-line">
+          <span>数据源：<strong data-bind="sourceName">新浪财经</strong></span>
+          <span>生成时间：<span data-bind="generatedAt">—</span></span>
+          <span>抓取耗时：<span data-bind="fetchElapsed">—</span></span>
+        </p>
+        <dl class="metric-grid" id="hero-metrics" aria-label="关键指标"></dl>
+      </div>
+    </section>
+
+    <!-- ============================ 实现过程 ============================ -->
+    <section id="process" class="band band-alt">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">实现过程</p>
+          <h2>五步数据管线</h2>
+          <p class="lead">
+            每一步都有落盘产物与对应文件：脚本可重跑，产物可复核，结论可追溯。
+          </p>
+        </header>
+        <ol class="pipeline-grid" id="pipeline-list"></ol>
+      </div>
+    </section>
+
+    <!-- ============================ 数据源与抓取 ============================ -->
+    <section id="source" class="band">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">数据来源</p>
+          <h2>抓了什么，怎么抓的</h2>
+          <p class="lead">
+            抓取脚本会话复用、限速 0.8 秒并支持失败重试，每个请求都写入本地清单，
+            保证整个过程可追溯、可复现。
+          </p>
+        </header>
+        <div class="two-col">
+          <article class="card">
+            <h3>数据源与合规说明</h3>
+            <dl class="kv-list" id="source-info"></dl>
+          </article>
+          <article class="card">
+            <h3>抓取清单统计</h3>
+            <dl class="kv-list" id="fetch-stats"></dl>
+          </article>
+        </div>
+        <article class="card card-wide">
+          <div class="card-head">
+            <h3>请求抽样（前 8 条）</h3>
+            <span class="hint">完整清单见 <code>data/raw/manifest.json</code></span>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table" id="fetch-table">
+              <caption class="sr-only">抓取请求抽样</caption>
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================ 数据成果 ============================ -->
+    <section id="dataset" class="band band-alt">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">数据成果</p>
+          <h2>清洗后的结构化数据集</h2>
+          <p class="lead">
+            分红明细、配股记录、年度汇总、股票汇总四张表；CSV 为中文表头便于核对，
+            JSON 保留英文字段名供程序使用，Excel 汇总全部结果。
+          </p>
+        </header>
+
+        <div class="tabs" role="tablist" aria-label="数据集切换" id="dataset-tabs"></div>
+
+        <div class="toolbar">
+          <label class="search-field">
+            <span class="sr-only">搜索当前表格</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+              <circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4.5 4.5"></path>
+            </svg>
+            <input type="search" id="table-search" placeholder="搜索代码 / 名称 / 日期 / 状态" autocomplete="off">
+          </label>
+          <p class="toolbar-meta" id="table-count" role="status"></p>
+        </div>
+
+        <div class="table-wrap table-wrap-tall">
+          <table class="data-table" id="dataset-table">
+            <caption class="sr-only" id="dataset-caption">数据集内容</caption>
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div class="pager" id="table-pager">
+          <button type="button" class="btn" data-page="prev">上一页</button>
+          <span class="pager-info" id="pager-info" aria-live="polite"></span>
+          <button type="button" class="btn" data-page="next">下一页</button>
+        </div>
+
+        <div class="download-row" aria-label="数据文件下载">
+          <span>下载数据文件：</span>
+          <a class="chip" href="../data/dividends.csv" download>分红明细 CSV</a>
+          <a class="chip" href="../data/yearly.csv" download>年度汇总 CSV</a>
+          <a class="chip" href="../data/dividends.json" download>全量 JSON</a>
+          <a class="chip" href="../data/dividends.xlsx" download>Excel 工作簿</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 质量报告 ============================ -->
+    <section id="quality" class="band">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">数据质量</p>
+          <h2>十条规则，逐条可追溯</h2>
+          <p class="lead">
+            规则覆盖完整性、方案有效性、日期顺序、数值范围、跨页一致性与主键唯一性；
+            问题按错误 / 提示 / 信息三级标注，全部可以定位到具体记录。
+          </p>
+        </header>
+
+        <div class="badge-row" id="quality-summary"></div>
+        <div class="rule-grid" id="rule-grid"></div>
+
+        <article class="card card-wide">
+          <div class="card-head">
+            <h3>问题清单</h3>
+            <span class="hint">导出文件：<code>data/issues.csv</code></span>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table" id="issue-table">
+              <caption class="sr-only">数据质量问题清单</caption>
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================ 可视化 ============================ -->
+    <section id="charts" class="band band-alt">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">结果可视化</p>
+          <h2>用图表读数据</h2>
+          <p class="lead">
+            三张图分别回答：谁累计派息最多、年度派息如何变化、各公司分红形态有何差别。
+            每张图都附带可展开的数据表，不依赖颜色单独传达信息。
+          </p>
+        </header>
+        <div class="chart-grid">
+          <figure class="card chart-card">
+            <figcaption>
+              <h3>累计每股税前派息</h3>
+              <p>统计区间内每 10 股税前派息 ÷ 10 的累计值，不含配股。</p>
+            </figcaption>
+            <div class="chart" id="chart-cash" role="img" aria-label="各股票累计每股税前派息柱状图"></div>
+            <details>
+              <summary>查看数据表</summary>
+              <div class="table-wrap"><table class="data-table" id="chart-cash-table"><thead></thead><tbody></tbody></table></div>
+            </details>
+          </figure>
+
+          <figure class="card chart-card">
+            <figcaption>
+              <h3>年度每股派息趋势</h3>
+              <p>按推断的分红年度汇总，每只股票一个独立纵轴面板，末端数字为最新年度每股派息合计。</p>
+            </figcaption>
+            <div class="chart" id="chart-yearly" role="img" aria-label="年度每股派息趋势折线图"></div>
+            <details>
+              <summary>查看数据表</summary>
+              <div class="table-wrap"><table class="data-table" id="chart-yearly-table"><thead></thead><tbody></tbody></table></div>
+            </details>
+          </figure>
+
+          <figure class="card chart-card">
+            <figcaption>
+              <h3>分红形态构成</h3>
+              <p>各股票记录中「含现金分红 / 含送股 / 含转增」的比例，观察分配结构差异。</p>
+            </figcaption>
+            <div class="chart" id="chart-structure" role="img" aria-label="各股票分红形态构成条形图"></div>
+            <details>
+              <summary>查看数据表</summary>
+              <div class="table-wrap"><table class="data-table" id="chart-structure-table"><thead></thead><tbody></tbody></table></div>
+            </details>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 字段字典 ============================ -->
+    <section id="dictionary" class="band">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">字段口径</p>
+          <h2>字段字典与覆盖率</h2>
+          <p class="lead">
+            每个字段的含义、来源与派生的说明；覆盖率即该字段在分红明细中的非空比例，
+            便于判断哪些字段可以放心用于后续分析。
+          </p>
+        </header>
+        <div class="table-wrap table-wrap-tall">
+          <table class="data-table" id="dictionary-table">
+            <caption class="sr-only">字段字典</caption>
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 测试与截图 ============================ -->
+    <section id="tests" class="band band-alt">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">质量保障</p>
+          <h2>Playwright 端到端测试</h2>
+          <p class="lead">
+            测试覆盖功能正确性、响应式布局、无障碍细节与截图留档，
+            桌面（1440×900）与移动（412×915）两个视口都会执行。
+          </p>
+        </header>
+
+        <dl class="metric-grid metric-grid-compact" id="test-summary"></dl>
+
+        <article class="card card-wide">
+          <div class="card-head">
+            <h3>用例清单</h3>
+            <span class="hint" id="test-hint"></span>
+          </div>
+          <div class="table-wrap table-wrap-tall">
+            <table class="data-table" id="test-table">
+              <caption class="sr-only">Playwright 测试用例结果</caption>
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </article>
+
+        <h3 class="sub-head">页面截图</h3>
+        <div class="gallery" id="shot-gallery"></div>
+      </div>
+    </section>
+
+    <!-- ============================ 复现指南 ============================ -->
+    <section id="reproduce" class="band">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">复现指南</p>
+          <h2>从零复现这套结果</h2>
+          <p class="lead">四步即可在本地重跑整条管线；抓取结果带缓存，重复执行不会重复请求数据源。</p>
+        </header>
+        <ol class="steps">
+          <li>
+            <h3>安装依赖</h3>
+            <pre><code>python -m pip install -r requirements.txt
+npm install</code></pre>
+          </li>
+          <li>
+            <h3>抓取原始页面</h3>
+            <pre><code>python scripts/fetch_sina.py</code></pre>
+            <p>列表页与明细页全部存入 <code>data/raw/</code>，并生成抓取清单。</p>
+          </li>
+          <li>
+            <h3>清洗并生成数据集</h3>
+            <pre><code>python scripts/preprocess.py</code></pre>
+            <p>输出 CSV / JSON / Excel 与质量报告，控制台会打印十条规则的命中情况。</p>
+          </li>
+          <li>
+            <h3>打包数据并跑测试</h3>
+            <pre><code>python scripts/build_site.py
+npx playwright test</code></pre>
+            <p>测试会同步生成 <code>docs/screenshots/</code> 下的截图与 HTML 报告。</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p id="footer-meta">数据版权归新浪财经及原始披露方所有，本项目仅用于课程学习与研究演示。</p>
+      <p>页面由数据脚本生成 · <span data-bind="generatedAt">—</span></p>
+    </div>
+  </footer>
+
+  <script src="assets/data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
