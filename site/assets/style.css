@@ -689,6 +689,14 @@ pre {
   font-size: 0.82rem;
 }
 
+.footer-inner a {
+  color: var(--color-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer-inner a:hover { color: var(--color-foreground); }
+
 /* ---------------------------------------------------------------- 动效 */
 .reveal-ready [data-reveal] {
   opacity: 0;

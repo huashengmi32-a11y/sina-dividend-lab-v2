@@ -324,10 +324,11 @@ npm install</code></pre>
             <p>输出 CSV / JSON / Excel 与质量报告，控制台会打印十条规则的命中情况。</p>
           </li>
           <li>
-            <h3>打包数据并跑测试</h3>
-            <pre><code>python scripts/build_site.py
-npx playwright test</code></pre>
-            <p>测试会同步生成 <code>docs/screenshots/</code> 下的截图与 HTML 报告。</p>
+            <h3>跑测试并打包页面</h3>
+            <pre><code>npx playwright test
+python scripts/sanitize_report.py
+python scripts/build_site.py</code></pre>
+            <p>测试会生成 <code>docs/screenshots/</code> 下的截图与 HTML 报告，随后脱敏报告并打包页面数据。</p>
           </li>
         </ol>
       </div>
@@ -337,6 +338,7 @@ npx playwright test</code></pre>
   <footer class="site-footer">
     <div class="container footer-inner">
       <p id="footer-meta">数据版权归新浪财经及原始披露方所有，本项目仅用于课程学习与研究演示。</p>
+      <p class="footer-links">代码仓库：<a href="https://github.com/huashengmi32-a11y/sina-dividend-lab-v2">GitHub 仓库</a> · 在线预览：<a href="https://huashengmi32-a11y.github.io/sina-dividend-lab-v2/">GitHub Pages</a></p>
       <p>页面由数据脚本生成 · <span data-bind="generatedAt">—</span></p>
     </div>
   </footer>
