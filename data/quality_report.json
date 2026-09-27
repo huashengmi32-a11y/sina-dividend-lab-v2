@@ -1,0 +1,288 @@
+{
+  "generated_at": "2026-09-27T19:13:26+08:00",
+  "source": {
+    "name": "新浪财经",
+    "home": "https://finance.sina.com.cn/",
+    "list_url": "http://vip.stock.finance.sina.com.cn/corp/go.php/vISSUE_ShareBonus/stockid/{code}.phtml",
+    "detail_url": "http://vip.stock.finance.sina.com.cn/corp/view/vISSUE_ShareBonusDetail.php",
+    "referer": "http://vip.stock.finance.sina.com.cn/",
+    "encoding": "gb2312",
+    "license": "数据版权归新浪财经及原始披露方所有，本项目仅用于课程学习与研究演示。"
+  },
+  "targets": [
+    {
+      "code": "600519",
+      "market": "上交所主板",
+      "industry": "白酒"
+    },
+    {
+      "code": "000858",
+      "market": "深交所主板",
+      "industry": "白酒"
+    },
+    {
+      "code": "000333",
+      "market": "深交所主板",
+      "industry": "家用电器"
+    },
+    {
+      "code": "600036",
+      "market": "上交所主板",
+      "industry": "股份制银行"
+    },
+    {
+      "code": "601318",
+      "market": "上交所主板",
+      "industry": "保险"
+    }
+  ],
+  "counts": {
+    "stocks": 5,
+    "dividend_records": 146,
+    "rights_records": 3,
+    "yearly_rows": 110,
+    "issues": 17,
+    "duplicates_removed": 0,
+    "detail_pages": 149
+  },
+  "checks": [
+    {
+      "id": "R1",
+      "name": "关键字段完整性",
+      "level": "error",
+      "description": "股票代码与公告日期必须存在且可解析",
+      "hits": 0,
+      "passed": true
+    },
+    {
+      "id": "R2",
+      "name": "方案内容有效性",
+      "level": "warning",
+      "description": "送股、转增、派息三项至少一项大于 0；三项均为 0 或缺失视为空方案",
+      "hits": 3,
+      "passed": false
+    },
+    {
+      "id": "R3",
+      "name": "除权除息日不早于公告日",
+      "level": "error",
+      "description": "实施类方案的除权除息日必须晚于或等于公告日",
+      "hits": 0,
+      "passed": true
+    },
+    {
+      "id": "R4",
+      "name": "先登记后除权",
+      "level": "error",
+      "description": "股权登记日不得晚于除权除息日",
+      "hits": 0,
+      "passed": true
+    },
+    {
+      "id": "R5",
+      "name": "数值非负",
+      "level": "error",
+      "description": "送股、转增、派息等比例字段不允许出现负值",
+      "hits": 0,
+      "passed": true
+    },
+    {
+      "id": "R6",
+      "name": "数值上界合理性",
+      "level": "warning",
+      "description": "每 10 股送股 / 转增 / 派息不应超过 100，超出需人工复核",
+      "hits": 13,
+      "passed": false
+    },
+    {
+      "id": "R7",
+      "name": "明细页与列表页交叉校验",
+      "level": "warning",
+      "description": "明细页税前红利与列表页派息差额不得超过 0.01 元（舍入容差）",
+      "hits": 1,
+      "passed": false
+    },
+    {
+      "id": "R8",
+      "name": "主键唯一",
+      "level": "error",
+      "description": "同一股票下公告日期不重复，重复记录清理后保留一条",
+      "hits": 0,
+      "passed": true
+    },
+    {
+      "id": "R9",
+      "name": "公告日期合理性",
+      "level": "info",
+      "description": "公告日期不得早于 1990-01-01；源站以 1900-01-01 表示未知日期，命中项保留记录但不派生年度",
+      "hits": 0,
+      "passed": true
+    },
+    {
+      "id": "R10",
+      "name": "日期字段可解析",
+      "level": "error",
+      "description": "所有非空日期字段必须符合 yyyy-mm-dd 格式",
+      "hits": 0,
+      "passed": true
+    }
+  ],
+  "issue_summary": {
+    "error": 0,
+    "warning": 17,
+    "info": 0
+  },
+  "issue_by_rule": {
+    "R2": 3,
+    "R6": 13,
+    "R7": 1
+  },
+  "field_coverage": {
+    "stock_code": 1.0,
+    "stock_name": 1.0,
+    "record_id": 1.0,
+    "announce_date": 1.0,
+    "announce_date_suspect": 1.0,
+    "dividend_year": 1.0,
+    "allocation_type": 1.0,
+    "implement_year": 1.0,
+    "status": 1.0,
+    "bonus_share_per10": 1.0,
+    "transfer_share_per10": 1.0,
+    "cash_per10_pretax": 1.0,
+    "cash_per_share_pretax": 1.0,
+    "ex_dividend_date": 0.9521,
+    "record_date": 0.9521,
+    "bonus_listing_date": 0.0342,
+    "detail_cash_pretax": 0.9521,
+    "detail_cash_aftertax": 0.8014,
+    "shareholders_meeting_date": 0.8425,
+    "dividend_pay_date": 0.9589,
+    "has_cash": 1.0,
+    "has_bonus_share": 1.0,
+    "has_transfer_share": 1.0,
+    "source_url": 1.0
+  },
+  "rights_field_coverage": {
+    "stock_code": 1.0,
+    "stock_name": 1.0,
+    "record_id": 1.0,
+    "announce_date": 1.0,
+    "rights_per10": 1.0,
+    "rights_price": 1.0,
+    "base_share_capital": 1.0,
+    "ex_rights_date": 1.0,
+    "record_date": 1.0,
+    "payment_start": 1.0,
+    "payment_end": 1.0,
+    "listing_date": 1.0,
+    "raised_funds": 0.0,
+    "source_url": 1.0
+  },
+  "field_dictionary": {
+    "stock_code": {
+      "label": "股票代码",
+      "description": "6 位证券代码，来源于项目目标清单"
+    },
+    "stock_name": {
+      "label": "股票名称",
+      "description": "证券简称，从数据源页面解析"
+    },
+    "record_id": {
+      "label": "记录编号",
+      "description": "派生字段：记录主键，格式 {股票代码}-{公告日期}#序号"
+    },
+    "announce_date": {
+      "label": "公告日期",
+      "description": "分红方案公告日期，统一为 ISO 格式 yyyy-mm-dd；源站未知日期以 1900-01-01 占位"
+    },
+    "announce_date_suspect": {
+      "label": "公告日期存疑",
+      "description": "派生字段：公告日期早于 1990-01-01 时标记为 True，该行不参与年度派生与区间统计"
+    },
+    "dividend_year": {
+      "label": "分红年度",
+      "description": "派生字段：按公告月份推断的利润归属年度（公告月份不超过 8 月归上一自然年度）"
+    },
+    "allocation_type": {
+      "label": "分配类型",
+      "description": "派生字段：年度分配 / 中期分配，按公告月份推断，仅用于分组统计"
+    },
+    "implement_year": {
+      "label": "实施年度",
+      "description": "派生字段：除权除息日所在年份，缺失时回退到公告年份"
+    },
+    "status": {
+      "label": "方案进度",
+      "description": "数据源给出的方案进度，如「实施」"
+    },
+    "bonus_share_per10": {
+      "label": "送股(股/10股)",
+      "description": "每 10 股送股数，缺失按 0 处理"
+    },
+    "transfer_share_per10": {
+      "label": "转增(股/10股)",
+      "description": "每 10 股转增数，缺失按 0 处理"
+    },
+    "cash_per10_pretax": {
+      "label": "派息税前(元/10股)",
+      "description": "每 10 股税前派息金额（元）"
+    },
+    "cash_per_share_pretax": {
+      "label": "每股派息税前(元)",
+      "description": "派生字段：每 10 股税前派息 ÷ 10"
+    },
+    "ex_dividend_date": {
+      "label": "除权除息日",
+      "description": "除权除息日"
+    },
+    "record_date": {
+      "label": "股权登记日",
+      "description": "股权登记日"
+    },
+    "bonus_listing_date": {
+      "label": "红股上市日",
+      "description": "红股上市日，未送股时为缺失"
+    },
+    "detail_cash_pretax": {
+      "label": "明细页税前红利(元)",
+      "description": "分红明细页给出的税前红利，用于与列表页交叉校验"
+    },
+    "detail_cash_aftertax": {
+      "label": "明细页税后红利(元)",
+      "description": "分红明细页给出的税后红利"
+    },
+    "shareholders_meeting_date": {
+      "label": "股东大会决议公告日",
+      "description": "股东大会决议公告日，来自明细页"
+    },
+    "dividend_pay_date": {
+      "label": "红利到账日",
+      "description": "红利 / 送转股到账日，来自明细页"
+    },
+    "has_cash": {
+      "label": "含现金分红",
+      "description": "派生字段：本次方案是否包含现金分红"
+    },
+    "has_bonus_share": {
+      "label": "含送股",
+      "description": "派生字段：本次方案是否包含送股"
+    },
+    "has_transfer_share": {
+      "label": "含转增",
+      "description": "派生字段：本次方案是否包含转增"
+    },
+    "source_url": {
+      "label": "数据来源",
+      "description": "该条记录对应的数据源页面地址"
+    }
+  },
+  "notes": [
+    "「分红年度」「分配类型」为推断字段：公告月份不超过 8 月归入上一年度分配，9 月及以后归入本期中期 / 特别分配，仅用于分组统计，不代表公司官方口径。",
+    "「派息(税前)(元/10股)」与明细页「税前红利」为两套页面口径，清洗后保留双方数值并用 R7 做交叉校验。",
+    "源站以 1900-01-01 表示未知公告日期，命中 R9 的记录保留原始信息，但不参与分红年度派生与累计派息统计。",
+    "R6 数值上界用于拦截明显的录入错误；贵州茅台等高价股每 10 股派息可超过 100 元，命中该规则属正常业务形态，需结合股价与股本结构判断。",
+    "R7 交叉校验发现列表页与明细页派息不一致时，两套数值都会保留，累计派息按列表页口径计算，问题清单中可追溯到具体记录。",
+    "缺失值统一为 JSON null / CSV 空单元格，不使用 NaN、-- 等源站占位符。"
+  ]
+}
