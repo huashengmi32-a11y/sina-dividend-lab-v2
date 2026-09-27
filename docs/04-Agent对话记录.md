@@ -337,6 +337,7 @@
 > | 交付物 | 位置 |
 > |--------|------|
 > | Git 仓库 | `https://github.com/huashengmi32-a11y/sina-dividend-lab-v2` |
+> | 在线预览 | `https://huashengmi32-a11y.github.io/sina-dividend-lab-v2/`（GitHub Pages，`scripts/deploy_pages.py` 一键发布） |
 > | 展示页面 | `site/index.html`（零网络依赖，双击即可打开） |
 > | 页面截图 | `docs/screenshots/`（10 张） |
 > | 数据集 | `data/`（CSV / JSON / Excel + 质量报告 + 问题清单） |

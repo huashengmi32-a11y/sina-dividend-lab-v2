@@ -5,6 +5,8 @@
 质量报告与网页测试结论**。
 
 - 展示页：`site/index.html`（双击即可离线打开）
+- 在线预览：<https://huashengmi32-a11y.github.io/sina-dividend-lab-v2/>
+- 仓库地址：<https://github.com/huashengmi32-a11y/sina-dividend-lab-v2>
 - 数据集：`data/`（CSV / JSON / Excel / 质量报告）
 - 测试：`tests/`（Playwright，功能 + 布局 + 无障碍 + 截图）
 - 文档：`docs/`（需求确认单、UI 设计说明、测试报告、Agent 对话记录）
