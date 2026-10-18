@@ -1,0 +1,260 @@
+{
+  "generatedAt": "2026-10-18T11:51:09.176Z",
+  "server": {
+    "name": "tdesign-mcp-server",
+    "version": "0.2.4",
+    "entry": "node_modules/tdesign-mcp-server/dist/stdio.js"
+  },
+  "tools": [
+    {
+      "name": "get-component-list",
+      "description": "获取 TDesign 所有可用的组件列表，适用场景：选择合适组件进行组合实现不存在的功能",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "framework": {
+            "type": "string",
+            "enum": [
+              "react",
+              "react-chat",
+              "vue",
+              "vue-next",
+              "vue-next-chat",
+              "mobile-react",
+              "mobile-vue",
+              "miniprogram",
+              "miniprogram-chat",
+              "uniapp",
+              "uniapp-chat"
+            ],
+            "description": "如果用户没有指定，根据 package.json 中的依赖判断"
+          }
+        },
+        "required": [
+          "framework"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      }
+    },
+    {
+      "name": "get-component-docs",
+      "description": "获取 TDesign 组件的文档，适用场景：代码生成和代码转换，支持多个组件同时查询",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "framework": {
+            "type": "string",
+            "enum": [
+              "react",
+              "react-chat",
+              "vue",
+              "vue-next",
+              "vue-next-chat",
+              "mobile-react",
+              "mobile-vue",
+              "miniprogram",
+              "miniprogram-chat",
+              "uniapp",
+              "uniapp-chat"
+            ],
+            "description": "如果用户没有指定，根据 package.json 中的依赖判断"
+          },
+          "names": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "可用的组件名称，支持批量查询"
+          }
+        },
+        "required": [
+          "framework",
+          "names"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      }
+    },
+    {
+      "name": "get-component-dom",
+      "description": "获取 TDesign 组件的 DOM 结构，适用场景：转换用户自定义的 CSS 样式, 支持多个组件同时查询",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "framework": {
+            "type": "string",
+            "enum": [
+              "react",
+              "react-chat",
+              "vue",
+              "vue-next",
+              "vue-next-chat",
+              "mobile-react",
+              "mobile-vue",
+              "miniprogram",
+              "miniprogram-chat",
+              "uniapp",
+              "uniapp-chat"
+            ],
+            "description": "如果用户没有指定，根据 package.json 中的依赖判断"
+          },
+          "names": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "可用的组件名称，支持批量查询"
+          }
+        },
+        "required": [
+          "framework",
+          "names"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      }
+    },
+    {
+      "name": "get-component-changelog",
+      "description": "获取 TDesign 组件的变更日志，适用场景：组件库版本升级，支持多个组件同时查询",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "framework": {
+            "type": "string",
+            "enum": [
+              "react",
+              "react-chat",
+              "vue",
+              "vue-next",
+              "vue-next-chat",
+              "mobile-react",
+              "mobile-vue",
+              "miniprogram",
+              "miniprogram-chat",
+              "uniapp",
+              "uniapp-chat"
+            ],
+            "description": "如果用户没有指定，根据 package.json 中的依赖判断；"
+          },
+          "names": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "可用的组件名称，支持批量查询"
+          },
+          "version": {
+            "description": "返回大于等于该版本号的日志，如果用户没有指定，根据 package.json 中的依赖判断",
+            "type": "string"
+          }
+        },
+        "required": [
+          "framework",
+          "names"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      }
+    },
+    {
+      "name": "search-icon",
+      "description": "根据英文关键词查询 TDesign 图标库的完整图标名。支持一次传入多个关键词：优先返回同时命中所有关键词的图标（AND），若无结果则降级为命中任一关键词（OR），并按命中数量评分排序。适用场景：图标查找与名称确认",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "keywords": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "用于匹配图标名的关键词列表（仅支持英文）"
+          },
+          "limit": {
+            "default": 20,
+            "description": "返回结果数量上限，避免返回数据过多",
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "keywords"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      }
+    }
+  ],
+  "componentList": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"message\":{\"action-sheet\":\"从底部弹出的模态框，提供和当前场景相关的操作动作，也支持提供信息输入和描述。\",\"dialog\":\"用于显示重要提示或请求用户进行重要操作，一种打断当前操作的模态视图。\",\"dropdown-menu\":\"菜单呈现数个并列的选项类目，用于整个页面的内容筛选，由菜单面板和菜单选项组成。\",\"guide\":\"逐步骤进行指引或解释说明的组件，常用于用户不熟悉的或需进行特别强调的页面。\",\"loading\":\"用于表示页面或操作的加载状态，给予用户反馈的同时减缓等待的焦虑感，由一个或一组反馈动效组成。\",\"message\":\"用于轻量级反馈或提示，不会打断用户操作。\",\"notice-bar\":\"在导航栏下方，用于给用户显示提示消息。\",\"overlay\":\"通过遮罩层，可以强调部分内容。\",\"popover\":\"用于文字提示的气泡框。\",\"popup\":\"由其他控件触发，屏幕滑出或弹出一块自定义内容区域。\",\"pull-down-refresh\":\"用于快速刷新页面信息，刷新可以是整页刷新也可以是页面的局部刷新。\",\"swipe-cell\":\"用于承载列表中的更多操作，通过左右滑动来展示，按钮的宽度固定高度根据列表高度而变化。\",\"toast\":\"用于轻量级反馈或提示，不会打断用户操作。\"},\"data\":{\"avatar\":\"用于展示用户头像信息，除了纯展示也可点击进入个人详情等操作。\",\"badge\":\"用于告知用户，该区域的状态变化或者待处理任务的数量。\",\"cell\":\"用于各个类别行的信息展示。\",\"collapse\":\"可以折叠/展开的内容区域。\",\"count-down\":\"用于实时展示倒计时数值。\",\"empty\":\"用于空状态时的占位提示。\",\"footer\":\"用于展示网站的版权声明、联系信息、重要页面链接和其他相关内容等信息。\",\"grid\":\"用于功能入口布局，将页面或特定区域切分成若干等大的区块，形成若干功能入口。\",\"image-viewer\":\"用于图片内容的缩略展示与查看。\",\"image\":\"用于展示效果，主要为上下左右居中裁切、拉伸、平铺等方式。\",\"progress\":\"用于展示任务当前的进度。\",\"qrcode\":\"能够将文本转换生成二维码的组件，支持自定义配色和 Logo 配置。\",\"result\":\"用于反馈不同结果的展示。\",\"skeleton\":\"用于等待加载内容所展示的占位图形组合，有动态效果加载效果，减少用户等待焦虑。\",\"sticky\":\"用于常驻页面顶部的信息、操作展示。\",\"swiper\":\"用于循环轮播一组图片或内容，也可以滑动进行切换，轮播动效时间可以设置。\",\"tag\":\"用于表明主体的类目，属性或状态。\",\"watermark\":\"给页面的某个区域加上水印。\",\"segmented\":\"用于展示多个选项并允许用户选择其中单个选项。\"},\"navigation\":{\"back-top\":\"用于当页面过长往下滑动时，帮助用户快速回到页面顶部。\",\"drawer\":\"用作一组平行关系页面/内容的切换器，相较于 Tab，同屏可展示更多的选项数量。\",\"indexes\":\"用于页面中信息快速检索，可以根据目录中的页码快速找到所需的内容。\",\"navbar\":\"用于不同页面之间切换或者跳转，位于内容区的上方，系统状态栏的下方。\",\"side-bar\":\"用于信息分类后的展示切换或锚点，位于页面左侧。\",\"steps\":\"用于任务步骤展示或任务进度展示。\",\"tab-bar\":\"用于在不同功能模块之间进行快速切换，位于页面底部。\",\"tabs\":\"用于内容分类后的展示切换。\"},\"base\":{\"button\":\"用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。\",\"divider\":\"用于分割、组织、细化有一定逻辑的组织元素内容和页面结构。\",\"fab\":\"当功能使用图标即可表意清楚时，可使用纯图标悬浮按钮，例如：添加、发布。\",\"icon\":\"Icon 作为 UI 构成中重要的元素，一定程度上影响 UI 界面整体呈现出的风格。\",\"layout\":\"以规则的网格阵列来指导和规范页面中的版面布局以及信息分布，提高界面内布局的一致性，节约成本。\",\"link\":\"文字超链接用于跳转一个新页面，如当前项目跳转，友情链接等。\",\"list\":\"瀑布流滚动加载，用于展示长列表，当列表即将滚动到底部时，会触发事件并加载更多列表项。\",\"table\":\"表格常用于展示同类结构下的多种数据，易于组织、对比和分析等，并可对数据进行搜索、筛选、排序等操作。一般包括表头、数据行和表尾三部分。\",\"typography\":\"排版用于文本基础编排和样式，使用排版组件，可以快速完成页面中的文本内容制作，同时配合其他组件完成深色与浅色模式切换等风格统一的需求\"},\"form\":{\"calendar\":\"按照日历形式展示数据或日期的容器。\",\"cascader\":\"用于多层级数据的逐级选择。\",\"checkbox\":\"用于预设的一组选项中执行多项选择，并呈现选择结果。\",\"color-picker\":\"用于颜色选择，支持多种格式。\",\"date-time-picker\":\"用于选择一个时间点或者一个时间段。\",\"form\":\"用以收集、校验和提交数据，一般由输入框、单选框、复选框、选择器等控件组成。\",\"input\":\"用于单行文本信息输入。\",\"picker\":\"用于一组预设数据中的选择。\",\"radio\":\"用于在预设的一组选项中执行单项选择，并呈现选择结果。\",\"rate\":\"用于对某行为/事物进行打分。\",\"search\":\"用于用户输入搜索信息，并进行页面内容搜索。\",\"slider\":\"用于选择横轴上的数值、区间、档位。\",\"stepper\":\"用于数量的增减。\",\"switch\":\"用于控制某个功能的开启和关闭。\",\"textarea\":\"用于多行文本信息输入。\",\"tree-select\":\"用于多层级数据的逐级选择。\",\"upload\":\"用于相册读取或拉起拍照的图片上传功能。\"},\"explain\":{\"config-provider\":\"全局特性配置包含各个组件的文本语言配置及其他通用配置，可以减少重复的通用配置。\"}}"
+      }
+    ]
+  },
+  "componentDocs": {
+    "Button": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"Button\":{\"api\":\"### Button Props\\n\\n名称 | 类型 | 默认值 | 描述 | 必传\\n-- | -- | -- | -- | --\\nblock | Boolean | false | 是否为块级元素 | N\\ncontent | String / Slot / Function | - | 按钮内容。TS 类型：`string \\\\| TNode` | N\\ndisabled | Boolean | undefined | 禁用状态。优先级：Button.disabled > Form.disabled | N\\nghost | Boolean | false | 是否为幽灵按钮（镂空按钮） | N\\nicon | Slot / Function | - | 按钮内部图标，可完全自定义。TS 类型：`TNode` | N\\nloading | Boolean | false | 是否显示为加载状态 | N\\nloadingProps | Object | - | 透传 Loading 组件全部属性。TS 类型：`LoadingProps` | N\\nshape | String | rectangle | 按钮形状，有 4 种：长方形、正方形、圆角长方形、圆形。可选项：rectangle/square/round/circle | N\\nsize | String | medium | 组件尺寸。可选项：extra-small/small/medium/large | N\\nsuffix | Slot / Function | - | 右侧内容，可用于定义右侧图标。TS 类型：`TNode` | N\\ntheme | String | default | 组件风格，依次为品牌色、危险色。可选项：default/primary/danger/light | N\\ntype | String | button | 按钮类型。可选项：submit/reset/button | N\\nvariant | String | base | 按钮形式，基础、线框、虚线、文字。可选项：base/outline/dashed/text | N\\nonClick | Function |  | TS 类型：`(e: MouseEvent) => void`<br/>点击时触发 | N\\n\\n### Button Events\\n\\n名称 | 参数 | 描述\\n-- | -- | --\\nclick | `(e: MouseEvent)` | 点击时触发\\n\\n### CSS Variables\\n\\n组件提供了下列 CSS 变量，可用于自定义样式。\\n名称 | 默认值 | 描述\\n-- | -- | --\\n--td-button-border-radius | @radius-default | -\\n--td-button-border-width | 2px | -\\n--td-button-danger-active-bg-color | @error-color-7 | -\\n--td-button-danger-active-border-color | @error-color-7 | -\\n--td-button-danger-bg-color | @error-color | -\\n--td-button-danger-border-color | @error-color | -\\n--td-button-danger-color | @font-white-1 | -\\n--td-button-danger-disabled-bg | @error-color-3 | -\\n--td-button-danger-disabled-border-color | @error-color-3 | -\\n--td-button-danger-disabled-color | @font-white-1 | -\\n--td-button-danger-outline-active-bg-color | @bg-color-container-active | -\\n--td-button-danger-outline-active-border-color | @error-color-7 | -\\n--td-button-danger-outline-border-color | @button-danger-outline-color | -\\n--td-button-danger-outline-color | @error-color | -\\n--td-button-danger-outline-disabled-color | @error-color-3 | -\\n--td-button-danger-text-active-bg-color | @bg-color-container-active | -\\n--td-button-danger-text-color | @error-color | -\\n--td-button-danger-text-disabled-color | @button-danger-disabled-color | -\\n--td-button-default-active-bg-color | @bg-color-component-active | -\\n--td-button-default-active-border-color | @bg-color-component-active | -\\n--td-button-default-bg-color | @bg-color-component | -\\n--td-button-default-border-color | @bg-color-component | -\\n--td-button-default-color | @text-color-primary | -\\n--td-button-default-disabled-bg | @bg-color-component-disabled | -\\n--td-button-default-disabled-border-color | @bg-color-component-disabled | -\\n--td-button-default-disabled-color | @text-color-disabled | -\\n--td-button-default-outline-active-bg-color | @bg-color-container-active | -\\n--td-button-default-outline-active-border-color | @component-border | -\\n--td-button-default-outline-border-color | @component-border | -\\n--td-button-default-outline-color | @text-color-primary | -\\n--td-button-default-outline-disabled-color | @component-border | -\\n--td-button-default-text-active-bg-color | @bg-color-container-active | -\\n--td-button-extra-small-font | @font-mark-medium | -\\n--td-button-extra-small-height | 28px | -\\n--td-button-extra-small-icon-size | 18px | -\\n--td-button-extra-small-padding-horizontal | 8px | -\\n--td-button-ghost-border-color | @button-ghost-color | -\\n--td-button-ghost-color | #fff | -\\n--td-button-ghost-danger-border-color | @error-color | -\\n--td-button-ghost-danger-color | @error-color | -\\n--td-button-ghost-danger-hover-color | @error-color-active | -\\n--td-button-ghost-disabled-color | @font-white-4 | -\\n--td-button-ghost-hover-color | @font-white-2 | -\\n--td-button-ghost-primary-border-color | @brand-color | -\\n--td-button-ghost-primary-color | @brand-color | -\\n--td-button-ghost-primary-hover-color | @brand-color-active | -\\n--td-button-icon-border-radius | 4px | -\\n--td-button-icon-spacer | @spacer | -\\n--td-button-large-font | @font-mark-large | -\\n--td-button-large-height | 48px | -\\n--td-button-large-icon-size | 24px | -\\n--td-button-large-padding-horizontal | 20px | -\\n--td-button-light-active-bg-color | @brand-color-light-active | -\\n--td-button-light-active-border-color | @brand-color-light-active | -\\n--td-button-light-bg-color | @brand-color-light | -\\n--td-button-light-border-color | @brand-color-light | -\\n--td-button-light-color | @brand-color | -\\n--td-button-light-disabled-bg | @brand-color-light | -\\n--td-button-light-disabled-border-color | @brand-color-light | -\\n--td-button-light-disabled-color | @brand-color-disabled | -\\n--td-button-light-outline-active-bg-color | @brand-color-light-active | -\\n--td-button-light-outline-active-border-color | @brand-color-active | -\\n--td-button-light-outline-bg-color | @brand-color-light | -\\n--td-button-light-outline-border-color | @button-light-outline-color | -\\n--td-button-light-outline-color | @brand-color | -\\n--td-button-light-outline-disabled-color | @brand-color-disabled | -\\n--td-button-light-text-active-bg-color | @bg-color-container-active | -\\n--td-button-light-text-color | @brand-color | -\\n--td-button-medium-font | @font-mark-large | -\\n--td-button-medium-height | 40px | -\\n--td-button-medium-icon-size | 20px | -\\n--td-button-medium-padding-horizontal | 16px | -\\n--td-button-primary-active-bg-color | @brand-color-active | -\\n--td-button-primary-active-border-color | @brand-color-active | -\\n--td-button-primary-bg-color | @brand-color | -\\n--td-button-primary-border-color | @brand-color | -\\n--td-button-primary-color | @font-white-1 | -\\n--td-button-primary-disabled-bg | @brand-color-disabled | -\\n--td-button-primary-disabled-border-color | @brand-color-disabled | -\\n--td-button-primary-disabled-color | @font-white-1 | -\\n--td-button-primary-outline-active-bg-color | @bg-color-container-active | -\\n--td-button-primary-outline-active-border-color | @brand-color-active | -\\n--td-button-primary-outline-border-color | @button-primary-outline-color | -\\n--td-button-primary-outline-color | @brand-color | -\\n--td-button-primary-outline-disabled-color | @brand-color-disabled | -\\n--td-button-primary-text-active-bg-color | @bg-color-container-active | -\\n--td-button-primary-text-color | @brand-color | -\\n--td-button-primary-text-disabled-color | @brand-color-disabled | -\\n--td-button-small-font | @font-mark-medium | -\\n--td-button-small-height | 32px | -\\n--td-button-small-icon-size | 18px | -\\n--td-button-small-padding-horizontal | 12px | -\",\"demo\":\"<template><div class='row'><t-button size='large' theme='primary'>填充按钮</t-button><t-button size='large' theme='light'>填充按钮</t-button><t-button size='large'>填充按钮</t-button></div><div class='row'><t-button size='large' theme='primary' variant='outline'>描边按钮</t-button><t-button size='large' theme='primary' variant='text'>文字按钮</t-button></div></template>\"}}"
+        }
+      ]
+    },
+    "Segmented": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"Segmented\":{\"api\":\"### Segmented Props\\n\\n名称 | 类型 | 默认值 | 描述 | 必传\\n-- | -- | -- | -- | --\\nblock | Boolean | false | 是否撑满父元素宽度 | N\\ndisabled | Boolean | - | 是否禁用 | N\\noptions | Object | [] | 数据化配置选项内容。TS 类型：`string[] \\\\| number[] \\\\| SegmentedItem[] ` `interface SegmentedItem { value: string \\\\| number; label?: string \\\\| TNode; icon?: TNode; disabled?: boolean }` | N\\nvalue | String / Number | - | 当前选中的值。支持语法糖 `v-model` 或 `v-model:value` | N\\ndefaultValue | String / Number | - | 当前选中的值。非受控属性 | N\\nonChange | Function |  | TS 类型：`(context: { value: string \\\\| number, selectedOption: SegmentedItem }) => void`<br/>选项值发生变化时触发 | N\\n\\n### Segmented Events\\n\\n名称 | 参数 | 描述\\n-- | -- | --\\nchange | `(context: { value: string \\\\| number, selectedOption: SegmentedItem })` | 选项值发生变化时触发\\n\\n### CSS Variables\\n\\n组件提供了下列 CSS 变量，可用于自定义样式。\\n名称 | 默认值 | 描述\\n-- | -- | --\\n--td-segmented-bg-color | @bg-color-component-disabled | -\\n--td-segmented-item-active-bg | @bg-color-container | -\\n--td-segmented-item-active-color | @brand-color | -\\n--td-segmented-item-color | @text-color-primary | -\\n--td-segmented-item-disabled-color | @text-color-disabled | -\\n--td-segmented-item-label-font | @font-body-medium | -\\n--td-segmented-transition | all @anim-duration-base @anim-time-fn-easing | -\",\"demo\":\"<template><div class='tdesign-mobile-demo'><div class='example-segmented'><t-segmented :options='options' :default-value='0' /></div><div class='example-segmented'><t-segmented v-model='valueWithIcon' :options='optionsWithIcon' :on-change='handleChange' /></div></div></template><script lang='ts' setup>import { ref, h } from 'vue';import { HomeIcon } from 'tdesign-icons-vue-next';const valueWithIcon = ref<string | number>(0);const options = [{ value: 0, label: '选项' },{ value: 1, label: '选项' },{ value: 2, label: '选项' },];const optionsWithIcon = [{ value: 0, label: '选项', icon: () => h(HomeIcon) },{ value: 1, label: '选项', icon: () => h(HomeIcon) },{ value: 2, label: '选项', icon: () => h(HomeIcon) },];const handleChange = (context: any) => {};</script>\"}}"
+        }
+      ]
+    },
+    "Switch": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"Switch\":{\"api\":\"### Switch Props\\n\\n名称 | 类型 | 默认值 | 描述 | 必传\\n-- | -- | -- | -- | --\\ncustomValue | Array | - | 用于自定义开关的值，[打开时的值，关闭时的值]。默认为 [true, false]。示例：[1, 0]、['open', 'close']。TS 类型：`Array<SwitchValue>` | N\\ndisabled | Boolean | undefined | 是否禁用组件。优先级：Switch.disabled > Form.disabled | N\\nicon | Array | [] | 开关的图标；[打开时的图标，关闭时的图标]。TS 类型：`TNode[]` | N\\nlabel | Array / Slot / Function | [] | 开关内容，[开启时内容，关闭时内容]。示例：['开', '关'] 或 (value) => value ? '开' : '关'。TS 类型：`Array<string \\\\| TNode> \\\\| TNode<{ value: SwitchValue }>` | N\\nloading | Boolean | false | 是否处于加载中状态 | N\\nsize | String | medium | 开关尺寸。可选项：small/medium/large | N\\nvalue | String / Number / Boolean | - | 开关值。支持语法糖 `v-model` 或 `v-model:value`。TS 类型：`T` `type SwitchValue = string \\\\| number \\\\| boolean` | N\\ndefaultValue | String / Number / Boolean | - | 开关值。非受控属性。TS 类型：`T` `type SwitchValue = string \\\\| number \\\\| boolean` | N\\nonChange | Function |  | TS 类型：`(value: T, context: { e: MouseEvent }) => void`<br/>数据发生变化时触发 | N\\n\\n### Switch Events\\n\\n名称 | 参数 | 描述\\n-- | -- | --\\nchange | `(value: T, context: { e: MouseEvent })` | 数据发生变化时触发\\n\\n### CSS Variables\\n\\n组件提供了下列 CSS 变量，可用于自定义样式。\\n名称 | 默认值 | 描述\\n-- | -- | --\\n--td-switch-checked-color | @brand-color | -\\n--td-switch-checked-disabled-color | @brand-color-disabled | -\\n--td-switch-dot-disabled-color | @font-white-1 | -\\n--td-switch-dot-horizontal-margin | 3px | -\\n--td-switch-dot-large-size | 26px | -\\n--td-switch-dot-plain-horizontal-margin | 5px | -\\n--td-switch-dot-plain-large-size | 22px | -\\n--td-switch-dot-plain-size | 18px | -\\n--td-switch-dot-plain-small-size | 14px | -\\n--td-switch-dot-shadow | @shadow-1 | -\\n--td-switch-dot-size | 22px | -\\n--td-switch-dot-small-size | 18px | -\\n--td-switch-height | 28px | -\\n--td-switch-icon-large-size | 24px | -\\n--td-switch-icon-size | 20px | -\\n--td-switch-icon-small-size | 16px | -\\n--td-switch-label-checked-color | @switch-checked-color | -\\n--td-switch-label-color | @bg-color-secondarycontainer-active | -\\n--td-switch-label-font-size | 14px | -\\n--td-switch-label-large-font-size | 16px | -\\n--td-switch-label-small-font-size | 12px | -\\n--td-switch-large-height | 32px | -\\n--td-switch-large-radius | calc(@switch-large-height / 2) | -\\n--td-switch-large-width | 52px | -\\n--td-switch-loading-color | @brand-color | -\\n--td-switch-radius | calc(@switch-height / 2) | -\\n--td-switch-small-height | 24px | -\\n--td-switch-small-radius | calc(@switch-small-height / 2) | -\\n--td-switch-small-width | 39px | -\\n--td-switch-unchecked-color | @bg-color-secondarycontainer-active | -\\n--td-switch-unchecked-disabled-color | @bg-color-component-disabled | -\\n--td-switch-width | 45px | -\",\"demo\":\"<template><t-cell title='基础开关'><template #rightIcon><t-switch :value='checked' @change='onChange'></t-switch></template></t-cell></template><script lang='ts' setup>import { ref } from 'vue';const checked = ref(true);const onChange = (val: any) => {checked.value = val;};</script>\"}}"
+        }
+      ]
+    },
+    "Tag": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"Tag\":{\"api\":\"### Tag Props\\n\\n名称 | 类型 | 默认值 | 描述 | 必传\\n-- | -- | -- | -- | --\\nclosable | Boolean | false | 标签是否可关闭 | N\\ncontent | String / Slot / Function | - | 组件子元素。TS 类型：`string \\\\| TNode` | N\\ndefault | String / Slot / Function | - | 组件子元素，同 `content`。TS 类型：`string \\\\| TNode` | N\\ndisabled | Boolean | false | 标签禁用态，失效标签不能触发事件。默认风格（theme=default）才有禁用态 | N\\nicon | Slot / Function | undefined | 标签中的图标，可自定义图标呈现。TS 类型：`TNode` | N\\nmaxWidth | String / Number | - | 标签最大宽度，宽度超出后会出现省略号。示例：'50px' / 80 | N\\nshape | String | square | 标签类型，有三种：方形、圆角方形、标记型。可选项：square/round/mark | N\\nsize | String | medium | 标签尺寸。可选项：small/medium/large/extra-large | N\\ntheme | String | default | 组件风格，用于描述组件不同的应用场景。可选项：default/primary/warning/danger/success | N\\nvariant | String | dark | 标签风格变体。可选项：dark/light/outline/light-outline | N\\nonClick | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>点击时触发 | N\\nonClose | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>如果关闭按钮存在，点击关闭按钮时触发 | N\\n\\n### Tag Events\\n\\n名称 | 参数 | 描述\\n-- | -- | --\\nclick | `(context: { e: MouseEvent })` | 点击时触发\\nclose | `(context: { e: MouseEvent })` | 如果关闭按钮存在，点击关闭按钮时触发\\n\\n### CheckTag Props\\n\\n名称 | 类型 | 默认值 | 描述 | 必传\\n-- | -- | -- | -- | --\\nchecked | Boolean | - | 标签选中的状态，默认风格（theme=default）才有选中态。支持语法糖 `v-model` 或 `v-model:checked` | N\\ndefaultChecked | Boolean | - | 标签选中的状态，默认风格（theme=default）才有选中态。非受控属性 | N\\nclosable | Boolean | false | 标签是否可关闭 | N\\ncontent | String / Number / Array / Slot / Function | - | 组件子元素；传入数组时：[选中内容，非选中内容]。TS 类型：`string \\\\| number \\\\| string[] \\\\| TNode` | N\\ndefault | String / Slot / Function | - | 组件子元素，默认插槽。TS 类型：`string \\\\| TNode` | N\\ndisabled | Boolean | false | 标签禁用态，失效标签不能触发事件。默认风格（theme=default）才有禁用态 | N\\nicon | Slot / Function | - | 标签中的图标，可自定义图标呈现。TS 类型：`TNode` | N\\nshape | String | square | 标签类型，有三种：方形、圆角方形、标记型。可选项：square/round/mark | N\\nsize | String | medium | 标签尺寸。可选项：small/medium/large。TS 类型：`SizeEnum` | N\\nvariant | String | dark | 标签风格变体。可选项：dark/light/outline/light-outline | N\\nonChange | Function |  | TS 类型：`(checked: boolean) => void`<br/>状态切换时触发 | N\\nonClick | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>点击标签时触发 | N\\nonClose | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>如果关闭按钮存在，点击关闭按钮时触发 | N\\n\\n### CheckTag Events\\n\\n名称 | 参数 | 描述\\n-- | -- | --\\nchange | `(checked: boolean)` | 状态切换时触发\\nclick | `(context: { e: MouseEvent })` | 点击标签时触发\\nclose | `(context: { e: MouseEvent })` | 如果关闭按钮存在，点击关闭按钮时触发\\n\\n### CSS Variables\\n\\n组件提供了下列 CSS 变量，可用于自定义样式。\\n名称 | 默认值 | 描述\\n-- | -- | --\\n--td-tag-checked-dark-disabled-color | @font-white-2 | -\\n--td-tag-checked-disabled-background-color | @brand-color-disabled | -\\n--td-tag-checked-disabled-border-color | @brand-color-disabled | -\\n--td-tag-checked-disabled-color | @brand-color-disabled | -\\n--td-tag-checked-light-disabled-background-color | @brand-color-light | -\\n--td-tag-close-icon-color | @text-color-placeholder | -\\n--td-tag-danger-color | @error-color | -\\n--td-tag-danger-light-color | @error-color-1 | -\\n--td-tag-default-color | @bg-color-component | -\\n--td-tag-default-font-color | @text-color-primary | -\\n--td-tag-default-light-color | @bg-color-secondarycontainer | -\\n--td-tag-disabled-background-color | @bg-color-component-disabled | -\\n--td-tag-disabled-border-color | @component-border | -\\n--td-tag-disabled-color | @text-color-disabled | -\\n--td-tag-extra-large-font | @font-body-medium | -\\n--td-tag-extra-large-icon-size | 16px | -\\n--td-tag-extra-large-padding | 8px 15px | -\\n--td-tag-large-font | @font-body-medium | -\\n--td-tag-large-icon-size | 16px | -\\n--td-tag-large-padding | 2px 7px | -\\n--td-tag-mark-border-radius | @tag-round-border-radius | -\\n--td-tag-medium-font | @font-body-small | -\\n--td-tag-medium-icon-size | 14px | -\\n--td-tag-medium-padding | 1px 7px | -\\n--td-tag-outline-bg-color | @bg-color-container | -\\n--td-tag-primary-color | @brand-color | -\\n--td-tag-primary-light-color | @brand-color-light | -\\n--td-tag-round-border-radius | 999px | -\\n--td-tag-small-font | @font-body-extraSmall | -\\n--td-tag-small-icon-size | 12px | -\\n--td-tag-small-padding | 1px 5px | -\\n--td-tag-square-border-radius | 4px | -\\n--td-tag-success-color | @success-color | -\\n--td-tag-success-light-color | @success-color-1 | -\\n--td-tag-warning-color | @warning-color | -\\n--td-tag-warning-light-color | @warning-color-1 | -\",\"demo\":\"<template><div><div class='summary'>可选中的标签</div><div class='tag-demo'><div><div v-for='(item, index) in variants' :key='index' class='tag-block check-tag-block'><div class='check-tag-block__title'>{{ item }}</div><t-check-tag :variant='item' size='large' :content='['已选中态', '未选中态']' /><t-check-tag :variant='item' default-checked size='large' :content='['已选中态', '未选中态']' /></div></div></div></div></template><script lang='ts' setup>const variants = ['light', 'dark', 'outline', 'light-outline'];</script>\"}}"
+        }
+      ]
+    },
+    "Dialog": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"Dialog\":{\"api\":\"### Dialog Props\\n\\n名称 | 类型 | 默认值 | 描述 | 必传\\n-- | -- | -- | -- | --\\nactions | Array / Slot / Function | - | 操作栏。TS 类型：`Array<ButtonProps>` | N\\nbeforeClose | Function | - | 关闭前的拦截钩子，支持异步。返回 Promise 时，确认按钮显示加载状态，Promise resolve 后关闭对话框，reject 则不关闭。TS 类型：`(trigger: 'confirm' \\\\| 'cancel' \\\\| 'overlay' \\\\| 'close-btn', context: { e: MouseEvent }) => void \\\\| Promise<void>` | N\\nbuttonLayout | String | horizontal | 多按钮排列方式。可选项：horizontal/vertical | N\\ncancelBtn | String / Object / Slot / Function | - | 取消按钮，可自定义。值为 null 则不显示取消按钮。值类型为字符串，则表示自定义按钮文本，值类型为 Object 则表示透传 Button 组件属性。使用 TNode 自定义按钮时，需自行控制取消事件。TS 类型：`string \\\\| ButtonProps \\\\| TNode \\\\| null` | N\\ncloseBtn | Boolean | false | 多按钮排列方式。可选项：true/false | N\\ncloseOnOverlayClick | Boolean | false | 点击蒙层时是否触发关闭事件 | N\\nconfirmBtn | String / Object / Slot / Function | - | 确认按钮。值为 null 则不显示确认按钮。值类型为字符串，则表示自定义按钮文本，值类型为 Object 则表示透传 Button 组件属性。使用 TNode 自定义按钮时，需自行控制确认事件。TS 类型：`string \\\\| ButtonProps \\\\| TNode \\\\| null` | N\\ncontent | String / Slot / Function | - | 内容。TS 类型：`string \\\\| TNode` | N\\ndestroyOnClose | Boolean | false | 是否在关闭弹框的时候销毁子元素 | N\\nmiddle | Slot / Function | - | 中间自定义内容。TS 类型：`TNode` | N\\noverlayProps | Object | {} | 透传至 Overlay 组件。TS 类型：`OverlayProps` | N\\npreventScrollThrough | Boolean | true | 防止滚动穿透 | N\\nshowOverlay | Boolean | true | 是否显示遮罩层 | N\\ntitle | String / Slot / Function | - | 标题。TS 类型：`string \\\\| TNode` | N\\ntop | Slot / Function | - | 顶部自定义内容。TS 类型：`TNode` | N\\nvisible | Boolean | - | 控制对话框是否显示 | N\\nwidth | String / Number | - | 对话框宽度，示例：320, '500px', '80%' | N\\nzIndex | Number | - | 对话框层级，Web 侧样式默认为 2500，移动端和小程序样式默认为 1500 | N\\nonCancel | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>如果“取消”按钮存在，则点击“取消”按钮时触发，同时触发关闭事件 | N\\nonClose | Function |  | TS 类型：`(context: DialogCloseContext) => void`<br/>关闭事件，点击 取消按钮 或 点击蒙层 时触发。<br/>`type DialogEventSource = 'cancel' \\\\| 'overlay' \\\\| 'close-btn'`<br/><br/>`interface DialogCloseContext { trigger: DialogEventSource; e: MouseEvent }`<br/> | N\\nonClosed | Function |  | TS 类型：`() => void`<br/>对话框消失动画效果结束后触发 | N\\nonConfirm | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>如果“确认”按钮存在，则点击“确认”按钮时触发 | N\\nonOverlayClick | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>如果蒙层存在，点击蒙层时触发 | N\\n\\n### Dialog Events\\n\\n名称 | 参数 | 描述\\n-- | -- | --\\ncancel | `(context: { e: MouseEvent })` | 如果“取消”按钮存在，则点击“取消”按钮时触发，同时触发关闭事件\\nclose | `(context: DialogCloseContext)` | 关闭事件，点击 取消按钮 或 点击蒙层 时触发。<br/>`type DialogEventSource = 'cancel' \\\\| 'overlay' \\\\| 'close-btn'`<br/><br/>`interface DialogCloseContext { trigger: DialogEventSource; e: MouseEvent }`<br/>\\nclosed | \\\\- | 对话框消失动画效果结束后触发\\nconfirm | `(context: { e: MouseEvent })` | 如果“确认”按钮存在，则点击“确认”按钮时触发\\noverlay-click | `(context: { e: MouseEvent })` | 如果蒙层存在，点击蒙层时触发\\n\\n### DialogOptions\\n\\n名称 | 类型 | 默认值 | 描述 | 必传\\n-- | -- | -- | -- | --\\nclassName | String | - | 弹框类名，示例：'t-class-dialog-first t-class-dialog-second' | N\\n`Omit<DialogProps, 'attach'>` | \\\\- | - | 继承 `Omit<DialogProps, 'attach'>` 中的全部属性 | N\\nstyle | String / Object | - | 弹框 style 属性，输入。TS 类型：`string \\\\| Styles` | N\\n`Omit<DialogProps, 'attach'>` | \\\\- | - | 继承 `Omit<DialogProps, 'attach'>` 中的全部属性 | N\\n\\n### DialogInstance\\n\\n名称 | 参数 | 返回值 | 描述\\n-- | -- | -- | --\\ndestroy | \\\\- | \\\\- | 必需。销毁弹框\\nhide | \\\\- | \\\\- | 必需。隐藏弹框\\nshow | \\\\- | \\\\- | 必需。显示弹框\\nupdate | `(props: DialogOptions)` | \\\\- | 必需。更新弹框内容\\n\\n### DialogPlugin\\n\\n同时也支持 `this.$dialog`。\\n\\n参数名称 | 参数类型 | 参数默认值 | 参数描述\\n-- | -- | -- | --\\noptions | \\\\- | - | TS 类型：`DialogOptions`\\n\\n插件返回值：`DialogInstance`\\n\\n### DialogPlugin.confirm\\n\\n同时也支持 `this.$dialog.confirm`。\\n\\n参数名称 | 参数类型 | 参数默认值 | 参数描述\\n-- | -- | -- | --\\noptions | \\\\- | - | TS 类型：`DialogOptions`\\n\\n### DialogPlugin.alert\\n\\n同时也支持 `this.$dialog.alert`。\\n\\n参数名称 | 参数类型 | 参数默认值 | 参数描述\\n-- | -- | -- | --\\noptions | Object | - | TS 类型：`Omit<DialogOptions, 'cancelBtn'>`\\n\\n### CSS Variables\\n\\n组件提供了下列 CSS 变量，可用于自定义样式。\\n名称 | 默认值 | 描述\\n-- | -- | --\\n--td-dialog-body-max-height | 456px | -\\n--td-dialog-border-radius | @radius-extraLarge | -\\n--td-dialog-close-color | @text-color-placeholder | -\\n--td-dialog-close-icon-size | 22px | -\\n--td-dialog-content-color | @text-color-secondary | -\\n--td-dialog-content-font | @font-body-large | -\\n--td-dialog-title-color | @text-color-primary | -\\n--td-dialog-title-font | @font-title-large | -\\n--td-dialog-width | 311px | -\",\"demo\":\"<template><t-button block variant='outline' theme='primary' size='large' @click='isShowDialog5 = true'>确认类-带标题</t-button><t-dialogv-model:visible='isShowDialog5'title='对话框标题'content='告知当前状态、信息和解决方法，等内容。描述文案尽可能控制在三行内'cancel-btn='取消'confirm-btn='确认'@confirm='onConfirm'@cancel='onCancel'></t-dialog><div class='btn-gap'></div><t-button block variant='outline' theme='primary' size='large' @click='isShowDialog6 = true'>确认类-无标题</t-button><t-dialogv-model:visible='isShowDialog6'close-on-overlay-clickcontent='告知当前状态、信息和解决方法，等内容。描述文案尽可能控制在三行内'cancel-btn='取消':confirm-btn='{ content: '警示操作', theme: 'danger' }'@confirm='onConfirm'@cancel='onCancel'@close='onClose'></t-dialog><div class='btn-gap'></div><t-button block variant='outline' theme='primary' size='large' @click='isShowDialog7 = true'>确认类-纯标题</t-button><t-dialogv-model:visible='isShowDialog7'close-on-overlay-clicktitle='对话框标题'cancel-btn='取消':confirm-btn='{ content: '确定', variant: 'base', theme: 'light' }'@confirm='onConfirm'@cancel='onCancel'@close='onClose'></t-dialog></template><script lang='ts' setup>import { ref } from 'vue';const isShowDialog5 = ref(false);const isShowDialog6 = ref(false);const isShowDialog7 = ref(false);const onConfirm = () => {};const onCancel = () => {};const onClose = () => {};</script>\"}}"
+        }
+      ]
+    },
+    "Cell": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"Cell\":{\"api\":\"### Cell Props\\n\\n名称 | 类型 | 默认值 | 描述 | 必传\\n-- | -- | -- | -- | --\\nalign | String | middle | 右侧内容的对齐方式，默认居中对齐。可选项：top/middle/bottom | N\\narrow | Boolean | false | 是否显示右侧箭头 | N\\nbordered | Boolean | true | 是否显示下边框 | N\\ndescription | String / Slot / Function | - | 下方内容描述。TS 类型：`string \\\\| TNode` | N\\nhover | Boolean | - | 是否开启点击反馈 | N\\nimage | String / Slot / Function | - | 主图。TS 类型：`string \\\\| TNode` | N\\nleftIcon | Slot / Function | - | 左侧图标，出现在单元格标题的左侧。TS 类型：`TNode` | N\\nnote | String / Slot / Function | - | 和标题同行的说明文字。TS 类型：`string \\\\| TNode` | N\\nrequired | Boolean | false | 是否显示表单必填星号 | N\\nrightIcon | Slot / Function | - | 最右侧图标。TS 类型：`TNode` | N\\ntitle | String / Slot / Function | - | 标题。TS 类型：`string \\\\| TNode` | N\\nonClick | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>右侧内容。TS 类型：`string \\\\| TNode` | N\\n\\n### Cell Events\\n\\n名称 | 参数 | 描述\\n-- | -- | --\\nclick | `(context: { e: MouseEvent })` | 右侧内容。TS 类型：`string \\\\| TNode`\\n\\n### CellGroup Props\\n\\n名称 | 类型 | 默认值 | 描述 | 必传\\n-- | -- | -- | -- | --\\nbordered | Boolean | false | 是否显示组边框 | N\\ntheme | String | default | `0.15.0`。单元格组风格。可选项：default/card | N\\ntitle | String | - | 单元格组标题 | N\\n\\n### CSS Variables\\n\\n组件提供了下列 CSS 变量，可用于自定义样式。\\n名称 | 默认值 | 描述\\n-- | -- | --\\n--td-border-left-space | @cell-horizontal-padding | -\\n--td-cell-bg-color | @bg-color-container | -\\n--td-cell-border-color | @component-stroke | -\\n--td-cell-border-right-space | 0 | -\\n--td-cell-description-color | @text-color-secondary | -\\n--td-cell-description-font | @font-body-medium | -\\n--td-cell-group-border-color | @border-color | -\\n--td-cell-group-title-bg-color | @bg-color-secondarycontainer | -\\n--td-cell-group-title-color | @text-color-placeholder | -\\n--td-cell-group-title-font-size | 14px | -\\n--td-cell-group-title-line-height | 45px | -\\n--td-cell-group-title-padding-left | 16px | -\\n--td-cell-height | auto | -\\n--td-cell-horizontal-padding | 16px | -\\n--td-cell-hover-color | @bg-color-secondarycontainer | -\\n--td-cell-image-height | 48px | -\\n--td-cell-image-width | 48px | -\\n--td-cell-left-icon-color | @brand-color | -\\n--td-cell-left-icon-size | 24px | -\\n--td-cell-note-color | @text-color-placeholder | -\\n--td-cell-note-font | @font-body-medium | -\\n--td-cell-required-color | @error-color-6 | -\\n--td-cell-required-font | @font-body-medium | -\\n--td-cell-right-icon-color | @text-color-placeholder | -\\n--td-cell-right-icon-size | 24px | -\\n--td-cell-title-color | @text-color-primary | -\\n--td-cell-title-font | @font-body-large | -\\n--td-cell-vertical-padding | 16px | -\",\"demo\":\"<template><t-cell-group theme='card'><t-cell :left-icon='app' title='单行标题' arrow /><t-cell :left-icon='service' title='单行标题' arrow /><t-cell :left-icon='internet' title='单行标题' arrow /></t-cell-group></template><script lang='ts' setup>import { h } from 'vue';import { AppIcon, ServiceIcon, InternetIcon } from 'tdesign-icons-vue-next';const app = () => h(AppIcon);const service = () => h(ServiceIcon);const internet = () => h(InternetIcon);</script>\"}}"
+        }
+      ]
+    }
+  },
+  "componentDom": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"Button\":\"<div class=\\\"row\\\"><button class=\\\"t-button t-button--size-large t-button--base t-button--primary t-button--rectangle\\\"><span class=\\\"t-button__content\\\">填充按钮</span></button><button class=\\\"t-button t-button--size-large t-button--base t-button--light t-button--rectangle\\\"><span class=\\\"t-button__content\\\">填充按钮</span></button><button class=\\\"t-button t-button--size-large t-button--base t-button--default t-button--rectangle\\\"><span class=\\\"t-button__content\\\">填充按钮</span></button><div class=\\\"row\\\"><button class=\\\"t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle\\\"><span class=\\\"t-button__content\\\">描边按钮</span></button><button class=\\\"t-button t-button--size-large t-button--text t-button--primary t-button--rectangle\\\"><span class=\\\"t-button__content\\\">文字按钮</span></button></div></div>\",\"Segmented\":\"<div class=\\\"example-segmented\\\"><div class=\\\"t-segmented\\\"><div class=\\\"t-segmented__group\\\"><div class=\\\"t-segmented__thumb\\\"/><div class=\\\"t-segmented__item t-segmented-item-0 t-segmented__item--active\\\"><div class=\\\"t-segmented__item-inner\\\"><span class=\\\"t-segmented__item-label\\\">选项</span></div><div class=\\\"t-segmented__item t-segmented-item-1\\\"><div class=\\\"t-segmented__item-inner\\\"><span class=\\\"t-segmented__item-label\\\">选项</span></div></div><div class=\\\"t-segmented__item t-segmented-item-2\\\"><div class=\\\"t-segmented__item-inner\\\"><span class=\\\"t-segmented__item-label\\\">选项</span></div></div></div></div></div><div class=\\\"example-segmented\\\"><div class=\\\"t-segmented\\\"><div class=\\\"t-segmented__group\\\"><div class=\\\"t-segmented__thumb\\\"/><div class=\\\"t-segmented__item t-segmented-item-0 t-segmented__item--active\\\"><div class=\\\"t-segmented__item-inner\\\"><span class=\\\"t-segmented__item-icon\\\"><svg class=\\\"t-icon t-icon-home\\\"><defs><mask><rect/><path/><path/><path/></mask><mask><rect/><path/><path/></mask><mask><rect/><path/></mask></defs><g><path/><path/><path/><path/></g></svg></span><span class=\\\"t-segmented__item-label\\\">选项</span></div></div><div class=\\\"t-segmented__item t-segmented-item-1\\\"><div class=\\\"t-segmented__item-inner\\\"><span class=\\\"t-segmented__item-icon\\\"><svg class=\\\"t-icon t-icon-home\\\"><defs><mask><rect/><path/><path/><path/></mask><mask><rect/><path/><path/></mask><mask><rect/><path/></mask></defs><g><path/><path/><path/><path/></g></svg></span><span class=\\\"t-segmented__item-label\\\">选项</span></div></div><div class=\\\"t-segmented__item t-segmented-item-2\\\"><div class=\\\"t-segmented__item-inner\\\"><span class=\\\"t-segmented__item-icon\\\"><svg class=\\\"t-icon t-icon-home\\\"><defs><mask><rect/><path/><path/><path/></mask><mask><rect/><path/><path/></mask><mask><rect/><path/></mask></defs><g><path/><path/><path/><path/></g></svg></span><span class=\\\"t-segmented__item-label\\\">选项</span></div></div></div></div></div></div>\",\"Switch\":\"<div class=\\\"t-cell\\\"><div class=\\\"t-cell__left\\\"/><div class=\\\"t-cell__title\\\"><div class=\\\"t-cell__title-text\\\">基础开关</div><div class=\\\"t-cell__right t-cell__right--middle\\\"><div class=\\\"t-cell__right-icon\\\"><div class=\\\"t-switch t-switch--medium t-switch--checked\\\"><div class=\\\"t-switch__dot t-switch__dot--medium t-switch__dot--checked t-switch__dot--plain\\\"><div class=\\\"t-switch__label t-switch__label--medium t-switch__label--checked\\\"/></div></div></div></div></div></div>\",\"Tag\":\"<div class=\\\"summary\\\">可选中的标签<div class=\\\"tag-demo\\\"><div><div class=\\\"tag-block check-tag-block\\\"><div class=\\\"check-tag-block__title\\\">light</div><span class=\\\"t-tag t-tag--square t-tag--default t-tag--large t-tag--light\\\"><span class=\\\"t-tag__text\\\">未选中态</span></span><span class=\\\"t-tag t-tag--square t-tag--primary t-tag--large t-tag--light t-tag--checked\\\"><span class=\\\"t-tag__text\\\">已选中态</span></span></div><div class=\\\"tag-block check-tag-block\\\"><div class=\\\"check-tag-block__title\\\">dark</div><span class=\\\"t-tag t-tag--square t-tag--default t-tag--large t-tag--dark\\\"><span class=\\\"t-tag__text\\\">未选中态</span></span><span class=\\\"t-tag t-tag--square t-tag--primary t-tag--large t-tag--dark t-tag--checked\\\"><span class=\\\"t-tag__text\\\">已选中态</span></span></div><div class=\\\"tag-block check-tag-block\\\"><div class=\\\"check-tag-block__title\\\">outline</div><span class=\\\"t-tag t-tag--square t-tag--default t-tag--large t-tag--outline\\\"><span class=\\\"t-tag__text\\\">未选中态</span></span><span class=\\\"t-tag t-tag--square t-tag--primary t-tag--large t-tag--outline t-tag--checked\\\"><span class=\\\"t-tag__text\\\">已选中态</span></span></div><div class=\\\"tag-block check-tag-block\\\"><div class=\\\"check-tag-block__title\\\">light-outline</div><span class=\\\"t-tag t-tag--square t-tag--default t-tag--large t-tag--light-outline\\\"><span class=\\\"t-tag__text\\\">未选中态</span></span><span class=\\\"t-tag t-tag--square t-tag--primary t-tag--large t-tag--light-outline t-tag--checked\\\"><span class=\\\"t-tag__text\\\">已选中态</span></span></div></div></div></div>\",\"Dialog\":\"<div class=\\\"t-dialog undefined\\\"><div class=\\\"t-dialog__content\\\"><div class=\\\"t-dialog__header\\\">对话框标题</div><div class=\\\"t-dialog__body\\\"><div class=\\\"t-dialog__body-text\\\">告知当前状态、信息和解决方法，等内容。描述文案尽可能控制在三行内</div></div></div><div class=\\\"t-dialog__footer\\\"><button class=\\\"t-button t-button--size-medium t-button--base t-button--light t-button--rectangle t-dialog__button t-dialog__button--horizontal\\\"><span class=\\\"t-button__content\\\">取消</span></button><button class=\\\"t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle t-dialog__button t-dialog__button--horizontal\\\"><span class=\\\"t-button__content\\\">确认</span></button></div></div>\",\"Cell\":\"<div><div class=\\\"t-cell-group t-cell-group--card\\\"><div class=\\\"t-cell\\\"><div class=\\\"t-cell__left\\\"><div class=\\\"t-cell__left-icon\\\"><svg class=\\\"t-icon t-icon-app\\\"><defs><mask><rect/><g><path/></g></mask><mask><rect/><path/></mask></defs><g><g><path/><path/><path/></g><path/><g><path/></g><path/></g></svg></div><div class=\\\"t-cell__title\\\"><div class=\\\"t-cell__title-text\\\">单行标题</div></div><div class=\\\"t-cell__right t-cell__right--middle\\\"><div class=\\\"t-cell__right-icon\\\"><svg class=\\\"t-icon t-icon-chevron-right\\\"><g><path/></g></svg></div></div></div><div class=\\\"t-cell\\\"><div class=\\\"t-cell__left\\\"><div class=\\\"t-cell__left-icon\\\"><svg class=\\\"t-icon t-icon-service\\\"><defs><mask><rect/><path/></mask><mask><rect/><path/></mask></defs><g><g><path/><path/></g><path/><path/></g></svg></div></div><div class=\\\"t-cell__title\\\"><div class=\\\"t-cell__title-text\\\">单行标题</div></div><div class=\\\"t-cell__right t-cell__right--middle\\\"><div class=\\\"t-cell__right-icon\\\"><svg class=\\\"t-icon t-icon-chevron-right\\\"><g><path/></g></svg></div></div></div><div class=\\\"t-cell\\\"><div class=\\\"t-cell__left\\\"><div class=\\\"t-cell__left-icon\\\"><svg class=\\\"t-icon t-icon-internet\\\"><defs><mask><rect/><path/><path/><path/></mask><mask><rect/><path/><path/></mask><mask><rect/><path/></mask></defs><g><path/><path/><path/><path/></g></svg></div></div><div class=\\\"t-cell__title\\\"><div class=\\\"t-cell__title-text\\\">单行标题</div></div><div class=\\\"t-cell__right t-cell__right--middle\\\"><div class=\\\"t-cell__right-icon\\\"><svg class=\\\"t-icon t-icon-chevron-right\\\"><g><path/></g></svg></div></div></div></div></div></div>\"}"
+      }
+    ]
+  },
+  "iconSearch": {
+    "content": [
+      {
+        "type": "text",
+        "text": "[\"chart\",\"chart-3d\",\"chart-add\",\"chart-bar\",\"chart-pie\",\"flowchart\",\"chart-area\",\"chart-line\",\"chart-ring\",\"play-chart\",\"chart-combo\",\"chart-radar\"]"
+      }
+    ]
+  }
+}

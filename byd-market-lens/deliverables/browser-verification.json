@@ -1,0 +1,53 @@
+{
+  "generatedAt": "2026-10-18T11:50:19.621Z",
+  "baseUrl": "http://127.0.0.1:4173",
+  "checks": {
+    "mobileOverflow": 0,
+    "chartCanvasCount": 1,
+    "tdesignControls": {
+      "button": 3,
+      "segmented": 2,
+      "switch": 1,
+      "tag": 1,
+      "cell": 8
+    },
+    "heading": "比亚迪",
+    "periodReturn": "-23.43%",
+    "chartAriaLabel": "比亚迪后复权价格图，2023-01-03至2023-12-29，共242个交易日。可在下方交易日明细中查看数值。",
+    "clippedTextElements": [],
+    "methodDialogVisible": true,
+    "desktopOverflow": 0,
+    "responsive": {
+      "320": {
+        "overflow": 0,
+        "chartWidth": 254
+      },
+      "375": {
+        "overflow": 0,
+        "chartWidth": 309
+      },
+      "768": {
+        "overflow": 0,
+        "chartWidth": 670
+      },
+      "1024": {
+        "overflow": 0,
+        "chartWidth": 770
+      },
+      "1440": {
+        "overflow": 0,
+        "chartWidth": 770
+      }
+    }
+  },
+  "consoleErrors": [],
+  "pageErrors": [],
+  "screenshots": [
+    "screenshots/byd-mobile-overview.png",
+    "screenshots/byd-mobile-chart.png",
+    "screenshots/byd-mobile-interaction.png",
+    "screenshots/byd-mobile-method.png",
+    "screenshots/byd-mobile-full.png",
+    "screenshots/byd-desktop.png"
+  ]
+}
