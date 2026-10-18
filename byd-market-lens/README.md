@@ -11,6 +11,10 @@
 
 https://github.com/huashengmi32-a11y/sina-dividend-lab-v2/tree/main/byd-market-lens
 
+## 在线 H5
+
+https://huashengmi32-a11y.github.io/sina-dividend-lab-v2/byd-market-lens/
+
 ## 交付内容
 
 - 可静态托管的 H5：`docs/index.html`
@@ -21,6 +25,7 @@ https://github.com/huashengmi32-a11y/sina-dividend-lab-v2/tree/main/byd-market-l
 - 数据结论与口径：`deliverables/data-analysis.md`
 - 脱敏交互记录：`deliverables/agent-conversation.md`
 - 浏览器验收结果：`deliverables/browser-verification.json`
+- 线上页面验收结果：`deliverables/live-page-verification.json`
 - 项目约束：`AGENTS.md`
 - UI/UX 设计系统：`design-system/byd-market-lens/MASTER.md`
 

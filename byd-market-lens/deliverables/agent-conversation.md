@@ -147,3 +147,61 @@
 交付完成：静态 H5、源代码、TDesign MCP 验证、移动端截图、数据分析和脱敏对话
 记录均已生成。页面只描述 2023 年历史数据，不预测未来走势，也不构成投资建议。
 
+---
+
+## 用户
+
+我不是有 GitHub 账号和仓库吗，我现在在谷歌浏览器打开的就是啊，你需要我提供什么给你？
+
+---
+
+## Agent
+
+我说明只需要浏览器地址栏中的仓库 URL，不需要密码、Token 或截图。随后我确认
+账号下已有可用仓库，并等待用户指定要使用的仓库。
+
+---
+
+## 用户
+
+`https://github.com/huashengmi32-a11y/sina-dividend-lab-v2` 这个是我的仓库。
+
+---
+
+## Agent
+
+我读取现有仓库的 `main` 分支和文件树，确认仓库已有其他项目文件。为避免覆盖，
+我将作业放在独立目录 `byd-market-lens/`，基于原有提交创建后续提交。
+
+### Git 和 Pages
+
+- 原仓库：`https://github.com/huashengmi32-a11y/sina-dividend-lab-v2`
+- 作业目录：仓库根目录下的 `byd-market-lens/`
+- 源码提交：`5b8711bb7b8b59b85935144eb02ee95eca6a47d1`
+- 文本换行规范化提交：`b01a183874645979fd1ade8e4618cc0c77731fd2`
+- 远程一致性：57 个文件，缺失 0、额外 0、哈希不一致 0
+- GitHub Pages 发布提交：`1fed60f502bd4e7600e5a6f4c1c6976fa54ade76`
+- 线上 H5：
+  `https://huashengmi32-a11y.github.io/sina-dividend-lab-v2/byd-market-lens/`
+
+第一次 Pages 发布后，我发现 Windows 路径分隔符被写成了反斜杠，导致资源加载
+失败。修正为 URL 正斜杠后重新发布，并完成线上验证。
+
+### 线上验证
+
+- HTTP 状态：200
+- 页面标题：比亚迪 2023 行情透视
+- ECharts canvas：1
+- TDesign 控件：Button 3、Segmented 2、Switch 1、Tag 1、Cell 8
+- 横向溢出：0
+- 控制台错误：0
+- 页面脚本错误：0
+
+---
+
+## Agent
+
+作业已提交到用户指定的现有仓库，并发布为可访问的线上 H5。源码、构建结果、
+截图、MCP 证据、数据分析与脱敏对话记录均已同步。
+
+

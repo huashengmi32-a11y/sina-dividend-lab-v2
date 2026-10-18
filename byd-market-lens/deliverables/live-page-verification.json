@@ -1,0 +1,19 @@
+{
+  "url": "https://huashengmi32-a11y.github.io/sina-dividend-lab-v2/byd-market-lens/",
+  "checkedAt": "2026-10-18T12:04:20.866Z",
+  "httpStatus": 200,
+  "title": "比亚迪 2023 行情透视",
+  "heading": "比亚迪",
+  "chartCanvasCount": 1,
+  "periodReturn": "-23.43%",
+  "horizontalOverflow": 0,
+  "tdesignControls": {
+    "button": 3,
+    "segmented": 2,
+    "switch": 1,
+    "tag": 1,
+    "cell": 8
+  },
+  "consoleErrors": [],
+  "pageErrors": []
+}
